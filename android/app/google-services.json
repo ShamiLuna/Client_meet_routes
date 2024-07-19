@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "482514008548",
+    "project_id": "mapspage-e376d",
+    "storage_bucket": "mapspage-e376d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482514008548:android:a64e968719b2e39724eff1",
+        "android_client_info": {
+          "package_name": "com.example.mapspage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQEokCsZ6ZsZiAPMTA-QJTui5-djnix-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

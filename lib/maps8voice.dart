@@ -685,14 +685,21 @@ class _MapsScreenState extends State<MapsScreen> {
                   ),
                   Column(
                     children: [
-                      // ElevatedButton(
-                      //   style: ElevatedButton.styleFrom(
-                      //     backgroundColor: Colors.blue,
-                      //   ),
+                      // FloatingActionButton(
+                      //   // style: ElevatedButton.styleFrom(
+                      //   //   backgroundColor: Colors.blue,
+                      //   // ),
                       //   onPressed: _getRoute,
                       //   child: Text('Get Route'),
                       //
                       // ),
+
+
+          //             FloatingActionButton(
+          //   onPressed: _getRoute,
+          //   tooltip: 'Get Route',
+          //   child: Icon(Icons.directions),
+          // ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.yellowAccent,
