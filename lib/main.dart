@@ -592,18 +592,26 @@
 // }
 
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // import 'map1.dart';
 // import 'map3.dart';
 // import 'map2.dart';
 // import 'map4.dart';
 // import 'map6.dart';
+import 'firebase_options.dart';
 import 'maps8voice.dart';
+import 'maps9.dart';
 // import 'maps_screen.dart'; // Ensure you have this file in the same directory or adjust the import accordingly
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform, // Initialize Firebase with platform-specific options
+  );
   runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   @override
