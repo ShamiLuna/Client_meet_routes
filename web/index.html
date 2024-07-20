@@ -1,38 +1,334 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>Client Meeting Route</title>-->
+<!--  <link rel="manifest" href="manifest.json">-->
+<!--  <script>-->
+<!--    let deferredPrompt;-->
+<!--    const installButton = document.createElement('button');-->
+<!--    installButton.textContent = 'Install';-->
+<!--    installButton.style.position = 'fixed';-->
+<!--    installButton.style.top = '10px';-->
+<!--    installButton.style.right = '10px';-->
+<!--    document.body.appendChild(installButton);-->
+
+<!--    window.addEventListener('beforeinstallprompt', (e) => {-->
+<!--      // Prevent the mini-infobar from appearing on mobile-->
+<!--      e.preventDefault();-->
+<!--      // Stash the event so it can be triggered later.-->
+<!--      deferredPrompt = e;-->
+<!--      // Update UI notify the user they can install the PWA-->
+<!--      installButton.style.display = 'block';-->
+
+<!--      installButton.addEventListener('click', () => {-->
+<!--        // Hide the app provided install promotion-->
+<!--        installButton.style.display = 'none';-->
+<!--        // Show the install prompt-->
+<!--        deferredPrompt.prompt();-->
+<!--        // Wait for the user to respond to the prompt-->
+<!--        deferredPrompt.userChoice.then((choiceResult) => {-->
+<!--          if (choiceResult.outcome === 'accepted') {-->
+<!--            console.log('User accepted the install prompt');-->
+<!--          } else {-->
+<!--            console.log('User dismissed the install prompt');-->
+<!--          }-->
+<!--          deferredPrompt = null;-->
+<!--        });-->
+<!--      });-->
+<!--    });-->
+
+<!--    if ('serviceWorker' in navigator) {-->
+<!--      window.addEventListener('load', function() {-->
+<!--        navigator.serviceWorker.register('/service_worker.js')-->
+<!--          .then(function(registration) {-->
+<!--            console.log('ServiceWorker registration successful with scope: ', registration.scope);-->
+<!--          }, function(error) {-->
+<!--            console.log('ServiceWorker registration failed: ', error);-->
+<!--          });-->
+<!--      });-->
+<!--    }-->
+<!--  </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<script src="main.dart.js" type="application/javascript"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>Client Meeting Route</title>-->
+<!--  <link rel="manifest" href="manifest.json">-->
+<!--  <script>-->
+<!--    let deferredPrompt;-->
+<!--    const installButton = document.createElement('button');-->
+<!--    installButton.textContent = 'Install';-->
+<!--    installButton.style.position = 'fixed';-->
+<!--    installButton.style.top = '10px';-->
+<!--    installButton.style.right = '10px';-->
+<!--    document.body.appendChild(installButton);-->
+
+<!--    window.addEventListener('beforeinstallprompt', (e) => {-->
+<!--      e.preventDefault();-->
+<!--      deferredPrompt = e;-->
+<!--      installButton.style.display = 'block';-->
+
+<!--      installButton.addEventListener('click', () => {-->
+<!--        installButton.style.display = 'none';-->
+<!--        deferredPrompt.prompt();-->
+<!--        deferredPrompt.userChoice.then((choiceResult) => {-->
+<!--          if (choiceResult.outcome === 'accepted') {-->
+<!--            console.log('User accepted the install prompt');-->
+<!--          } else {-->
+<!--            console.log('User dismissed the install prompt');-->
+<!--          }-->
+<!--          deferredPrompt = null;-->
+<!--        });-->
+<!--      });-->
+<!--    });-->
+
+<!--    if ('serviceWorker' in navigator) {-->
+<!--      window.addEventListener('load', function() {-->
+<!--        navigator.serviceWorker.register('/service_worker.js')-->
+<!--          .then(function(registration) {-->
+<!--            console.log('ServiceWorker registration successful with scope: ', registration.scope);-->
+<!--          }, function(error) {-->
+<!--            console.log('ServiceWorker registration failed: ', error);-->
+<!--          });-->
+
+<!--        // Push Notifications-->
+<!--        navigator.serviceWorker.ready.then(function(registration) {-->
+<!--          return registration.pushManager.getSubscription()-->
+<!--            .then(function(subscription) {-->
+<!--              if (subscription) {-->
+<!--                return subscription;-->
+<!--              }-->
+<!--              const applicationServerKey = urlB64ToUint8Array('YOUR_APPLICATION_SERVER_KEY');-->
+<!--              return registration.pushManager.subscribe({-->
+<!--                userVisibleOnly: true,-->
+<!--                applicationServerKey: applicationServerKey-->
+<!--              });-->
+<!--            });-->
+<!--        }).then(function(subscription) {-->
+<!--          console.log('User is subscribed:', subscription);-->
+<!--        }).catch(function(err) {-->
+<!--          console.log('Failed to subscribe the user: ', err);-->
+<!--        });-->
+
+<!--        function urlB64ToUint8Array(base64String) {-->
+<!--          const padding = '='.repeat((4 - base64String.length % 4) % 4);-->
+<!--          const base64 = (base64String + padding)-->
+<!--            .replace(/-/g, '+')-->
+<!--            .replace(/_/g, '/');-->
+
+<!--          const rawData = window.atob(base64);-->
+<!--          const outputArray = new Uint8Array(rawData.length);-->
+
+<!--          for (let i = 0; i < rawData.length; ++i) {-->
+<!--            outputArray[i] = rawData.charCodeAt(i);-->
+<!--          }-->
+<!--          return outputArray;-->
+<!--        }-->
+<!--      });-->
+<!--    }-->
+<!--  </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<script src="main.dart.js" type="application/javascript"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>Client Meeting Route</title>-->
+<!--  <link rel="manifest" href="manifest.json">-->
+<!--  <link rel="icon" href="icons/icon-192.png">-->
+<!--  <script>-->
+<!--    let deferredPrompt;-->
+<!--    const installButton = document.createElement('button');-->
+<!--    installButton.textContent = 'Install';-->
+<!--    installButton.style.position = 'fixed';-->
+<!--    installButton.style.top = '10px';-->
+<!--    installButton.style.right = '10px';-->
+<!--    installButton.style.display = 'none'; // Hide by default-->
+<!--    document.body.appendChild(installButton);-->
+
+<!--    window.addEventListener('beforeinstallprompt', (e) => {-->
+<!--      e.preventDefault();-->
+<!--      deferredPrompt = e;-->
+<!--      installButton.style.display = 'block';-->
+
+<!--      installButton.addEventListener('click', () => {-->
+<!--        installButton.style.display = 'none';-->
+<!--        deferredPrompt.prompt();-->
+<!--        deferredPrompt.userChoice.then((choiceResult) => {-->
+<!--          if (choiceResult.outcome === 'accepted') {-->
+<!--            console.log('User accepted the install prompt');-->
+<!--          } else {-->
+<!--            console.log('User dismissed the install prompt');-->
+<!--          }-->
+<!--          deferredPrompt = null;-->
+<!--        });-->
+<!--      });-->
+<!--    });-->
+
+<!--    if ('serviceWorker' in navigator) {-->
+<!--      window.addEventListener('load', function() {-->
+<!--        navigator.serviceWorker.register('/service_worker.js')-->
+<!--          .then(function(registration) {-->
+<!--            console.log('ServiceWorker registration successful with scope: ', registration.scope);-->
+<!--          }, function(error) {-->
+<!--            console.log('ServiceWorker registration failed: ', error);-->
+<!--          });-->
+
+<!--        // Push Notifications-->
+<!--        navigator.serviceWorker.ready.then(function(registration) {-->
+<!--          return registration.pushManager.getSubscription()-->
+<!--            .then(function(subscription) {-->
+<!--              if (subscription) {-->
+<!--                return subscription;-->
+<!--              }-->
+<!--              const applicationServerKey = urlB64ToUint8Array('YOUR_APPLICATION_SERVER_KEY');-->
+<!--              return registration.pushManager.subscribe({-->
+<!--                userVisibleOnly: true,-->
+<!--                applicationServerKey: applicationServerKey-->
+<!--              });-->
+<!--            });-->
+<!--        }).then(function(subscription) {-->
+<!--          console.log('User is subscribed:', subscription);-->
+<!--        }).catch(function(err) {-->
+<!--          console.log('Failed to subscribe the user: ', err);-->
+<!--        });-->
+
+<!--        function urlB64ToUint8Array(base64String) {-->
+<!--          const padding = '='.repeat((4 - base64String.length % 4) % 4);-->
+<!--          const base64 = (base64String + padding)-->
+<!--            .replace(/-/g, '+')-->
+<!--            .replace(/_/g, '/');-->
+
+<!--          const rawData = window.atob(base64);-->
+<!--          const outputArray = new Uint8Array(rawData.length);-->
+
+<!--          for (let i = 0; i < rawData.length; ++i) {-->
+<!--            outputArray[i] = rawData.charCodeAt(i);-->
+<!--          }-->
+<!--          return outputArray;-->
+<!--        }-->
+<!--      });-->
+<!--    }-->
+<!--  </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<script src="main.dart.js" type="application/javascript"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="mapspage">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>mapspage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Meeting Route</title>
   <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ClientRoute">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css"> <!-- if you have a stylesheet -->
+  <script>
+    let deferredPrompt;
+    const installButton = document.createElement('button');
+    installButton.textContent = 'Install';
+    installButton.style.position = 'fixed';
+    installButton.style.top = '10px';
+    installButton.style.right = '10px';
+    installButton.style.display = 'none'; // Hide by default
+    document.body.appendChild(installButton);
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installButton.style.display = 'block';
+
+      installButton.addEventListener('click', () => {
+        installButton.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service_worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(error) {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+
+        // Push Notifications
+        navigator.serviceWorker.ready.then(function(registration) {
+          return registration.pushManager.getSubscription()
+            .then(function(subscription) {
+              if (subscription) {
+                return subscription;
+              }
+              const applicationServerKey = urlB64ToUint8Array('YOUR_APPLICATION_SERVER_KEY');
+              return registration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: applicationServerKey
+              });
+            });
+        }).then(function(subscription) {
+          console.log('User is subscribed:', subscription);
+        }).catch(function(err) {
+          console.log('Failed to subscribe the user: ', err);
+        });
+
+        function urlB64ToUint8Array(base64String) {
+          const padding = '='.repeat((4 - base64String.length % 4) % 4);
+          const base64 = (base64String + padding)
+            .replace(/-/g, '+')
+            .replace(/_/g, '/');
+
+          const rawData = window.atob(base64);
+          const outputArray = new Uint8Array(rawData.length);
+
+          for (let i = 0; i < rawData.length; ++i) {
+            outputArray[i] = rawData.charCodeAt(i);
+          }
+          return outputArray;
+        }
+      });
+    }
+  </script>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+<button id="installButton" onclick="installApp()" style="display:none;">Install</button>
+<script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>

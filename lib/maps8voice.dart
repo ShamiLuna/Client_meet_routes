@@ -518,7 +518,7 @@ class _MapsScreenState extends State<MapsScreen> {
                 ),
               ),
             SizedBox(
-              height: 400,
+              height: 550,
               child: FlutterMap(
                 options: MapOptions(
                   center: startLocation,
@@ -668,7 +668,7 @@ class _MapsScreenState extends State<MapsScreen> {
                         'Total Distance: ${(totalDistance / 1000).toStringAsFixed(2)} km',
                         style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 5),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.yellow,
@@ -676,8 +676,7 @@ class _MapsScreenState extends State<MapsScreen> {
                         onPressed: (){
                           _getRoute();
                           _getLiveLocation();
-
-                          ;},
+                          },
 
                         child: Text('Calculate Distance'),
                       ),
@@ -704,8 +703,8 @@ class _MapsScreenState extends State<MapsScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.yellowAccent,
                         ),
-                        onPressed: () => _speak('say add and add locations'),
-                        child: Text('Speak'),
+                        onPressed: () => _speak('press recorder say add location example add delhi again press recorder once finished'),
+                        child: Text('Mike',style: TextStyle(overflow: TextOverflow.ellipsis,),),
                       ),
                     ],
                   ),
