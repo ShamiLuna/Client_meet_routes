@@ -12,9 +12,9 @@ Client Meeting Route Client Meeting Route is a navigation app designed to stream
 
 Features Dynamic Route Calculation: Calculate routes between multiple locations and get real-time travel estimates. Live Location Tracking: Track your current location on the map. Voice Command Integration: Add and manage locations using voice commands. Address to Location Conversion: Convert addresses to geographical coordinates and vice versa. Interactive Map: Visualize routes and locations on an interactive map. Distance Calculation: Calculate total route distance and segment details. Saved Routes: Save and reload routes for future use. Location Management: Add, reorder, and edit up to 15 locations. Text-to-Speech (TTS): Hear instructions and feedback through text-to-speech. Getting Started Prerequisites Flutter SDK Dart SDK Android Studio or Visual Studio Code Installation Clone the Repository
 
-bash Copy code git clone (https://github.com/ShamiLuna/Client_meeting_routes.git) Navigate to the Project Directory
+bash Copy code git clone (https://github.com/ShamiLuna/Client_meet_routes.git) Navigate to the Project Directory
 
-bash Copy code cd Client_meeting_routes Install Dependencies
+bash Copy code cd Client_meet_routes Install Dependencies
 
 bash Copy code flutter pub get Run the App
 
