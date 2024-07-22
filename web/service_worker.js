@@ -109,6 +109,63 @@
 
 
 
+//const CACHE_NAME = 'my-site-cache-v1';
+//const urlsToCache = [
+//  '/',
+//  '/index.html',
+//  '/manifest.json',
+//  '/icons/icon-192.png',
+//  '/icons/icon-512.png',
+//  // Minimize initial assets to avoid timeout
+//];
+//
+//// Install a service worker
+//self.addEventListener('install', event => {
+//  event.waitUntil(
+//    caches.open(CACHE_NAME)
+//      .then(cache => cache.addAll(urlsToCache))
+//      .catch(error => console.error('Failed to open cache', error))
+//  );
+//});
+//
+//// Cache and return requests
+//self.addEventListener('fetch', event => {
+//  event.respondWith(
+//    caches.match(event.request)
+//      .then(response => response || fetch(event.request))
+//  );
+//});
+//
+//// Activate the service worker and clean up old caches
+//self.addEventListener('activate', event => {
+//  const cacheWhitelist = [CACHE_NAME];
+//  event.waitUntil(
+//    caches.keys().then(cacheNames =>
+//      Promise.all(
+//        cacheNames.map(cacheName => {
+//          if (!cacheWhitelist.includes(cacheName)) {
+//            return caches.delete(cacheName);
+//          }
+//        })
+//      )
+//    )
+//  );
+//});
+//
+//// Push notifications
+//self.addEventListener('push', event => {
+//  const options = {
+//    body: event.data.text(),
+//    icon: 'icons/icon-192.png',
+//    badge: 'icons/icon-192.png'
+//  };
+//
+//  event.waitUntil(
+//    self.registration.showNotification('My PWA', options)
+//  );
+//});
+
+
 const CACHE_NAME = 'my-site-cache-v1';
 const urlsToCache = [
   '/',
@@ -116,7 +173,6 @@ const urlsToCache = [
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
-  // Minimize initial assets to avoid timeout
 ];
 
 // Install a service worker
